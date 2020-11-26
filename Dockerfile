@@ -1,5 +1,8 @@
-FROM jboss/wildfly
-RUN /opt/jboss/wildfly/bin/add-user.sh jboss password --silent
-CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
-VOLUME /opt/jboss/wildfly/standalone/deployments/
-ADD target/mkyong.war /opt/jboss/wildfly/standalone/deployments/
+FROM tomcat:6-jre8
+
+RUN rm -rf /usr/local/tomcat/webapps/*
+
+COPY target/mkyong.war /usr/local/tomcat/webapps/mkyong.war
+
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
