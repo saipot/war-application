@@ -14,7 +14,7 @@ pipeline {
             }
         }
     
-    stages {
+    stage {
         stage('Build and Test') {
             agent { node{
                        label "jenkins"}
