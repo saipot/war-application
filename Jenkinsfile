@@ -1,8 +1,8 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven 3.3.9'
-        jdk 'jdk8'
+        maven 
+        jdk 
     }
     stages {
         stage ('Initialize') {
@@ -21,7 +21,7 @@ pipeline {
             post {
                 success {
                     junit 'target/surefire-reports/**/*.xml' 
-					archiveArtifacts artifacts: 'web-thymeleaf-war/target/gameoflife.war', fingerprint:true
+					archiveArtifacts artifacts: 'web-thymeleaf-war/target/mkyong.war', fingerprint:true
                 }
             }
         }
