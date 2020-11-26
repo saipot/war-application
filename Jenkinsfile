@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     tools {
-      maven 'apache-maven-3.3.1'
+      maven 'apache-maven-3.2.2'
     }
     stages {
         stage('Build and Test') {
@@ -31,7 +31,7 @@ pipeline {
                    label "jenkins"}
             }
             steps {
-                build job:'../Tomcat deploy to Integration' , parameters:[string(name: 'BRANCH_NAME', value: "${env.BRANCH_NAME}")]
+                build job:'../Tomcat Deploy To Integration' , parameters:[string(name: 'BRANCH_NAME', value: "${env.BRANCH_NAME}")]
             }
         }
     }
