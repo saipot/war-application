@@ -4,25 +4,28 @@ pipeline {
         maven 'Maven 3.3.9'
         jdk 'jdk8'
     }
-  
-    
     stages {
-        stage('Build and Test') {
-            agent { node{
-                       label "jenkins"}
-            } 
+        stage ('Initialize') {
             steps {
-			    sh '''
+                sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
                 '''
-			    sh 'mvn -Dmaven.test.failure.ignore=true install'
-                sh 'mvn clean package'
-                sh 'echo "build ran"'
-                archiveArtifacts artifacts: 'target/mkyong.war', fingerprint:true
-                junit '**/target/surefire-reports/*.xml'
             }
         }
+
+        stage ('Build') {
+            steps {
+                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+            }
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
+					archiveArtifacts artifacts: 'web-thymeleaf-war/target/gameoflife.war', fingerprint:true
+                }
+            }
+        }
+    
         
         stage ('Sonar Analysis') {
             agent {node{
@@ -43,4 +46,5 @@ pipeline {
             }
         }
     }
-}
+  }
+
