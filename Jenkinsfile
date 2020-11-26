@@ -1,5 +1,18 @@
 pipeline {
-    agent any 
+    agent any
+    tools {
+        maven 'Maven 3.3.9'
+        jdk 'jdk8'
+    }
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
     
     stages {
         stage('Build and Test') {
@@ -7,6 +20,7 @@ pipeline {
                        label "jenkins"}
             } 
             steps {
+			    sh 'mvn -Dmaven.test.failure.ignore=true install'
                 sh 'mvn clean package'
                 sh 'echo "build ran"'
                 archiveArtifacts artifacts: 'target/mkyong.war', fingerprint:true
