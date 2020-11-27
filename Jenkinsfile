@@ -1,14 +1,17 @@
 pipeline {
-    agent any 
-    tools {
-      maven 'apache-maven-3.3.9'
-    }
+    agent { 
+    docker {
+            image 'maven:3-alpine' 
+            args '-v /root/.m2:/root/.m2' 
+        } 
+	 }
     stages {
         stage('Build and Test') {
             agent { node{
                        label "jenkins"}
             } 
             steps {
+			    sh 'mvn -B -DskipTests clean package'
                 sh 'mvn clean package'
                 sh 'echo "build ran"'
                 archiveArtifacts artifacts: 'web-thymeleaf-war/target/mkyong.war', fingerprint:true
