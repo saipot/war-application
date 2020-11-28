@@ -1,8 +1,7 @@
 pipeline {
-  
-	     tools {
+    tools {
 		     	 
-            maven 'apache-maven-3.3.9'
+            mvnHome 'Maven3'
 	 }
     stages {
         stage('Build and Test') {
