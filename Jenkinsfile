@@ -1,7 +1,8 @@
 pipeline {
-    tool types {
-		     	 
-            maven 'Maven3'
+     agent { node{
+           label "jenkins"}
+    tool {
+		    maven 'Maven3'}
 	 }
     stages {
         stage('Build and Test') {
