@@ -1,7 +1,7 @@
 pipeline {
-    tools {
+    tool types {
 		     	 
-            mvnHome 'Maven3'
+            maven 'Maven3'
 	 }
     stages {
         stage('Build and Test') {
