@@ -17,13 +17,13 @@ services:
   sonarqube:
     image: "sonarqube"
     ports:
-     - "9000:9000"
+     - 9000:9000
     networks:
       - demo
   tomcat:
     image: 'tutum/tomcat:6.0'
     ports:
-      - "10000:10000"
+      - 8080:10000
     environment:
       - TOMCAT_PASS=admin
     networks:
