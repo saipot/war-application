@@ -1,8 +1,9 @@
 pipeline {
-    agent any {
-	  
-         		 
-          maven 'apache-maven-3.3.9'
+    agent { node{
+              label "jenkins"}
+	     tools {
+		     	 
+            maven 'apache-maven-3.3.9'}
 	 }
     stages {
         stage('Build and Test') {
