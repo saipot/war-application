@@ -1,7 +1,7 @@
 pipeline {
-     agent any {
+     agent any 
     tool {
-		    maven 'Maven3'}
+		    maven 'Maven3'
 	 }
     stages {
         stage('Build and Test') {
