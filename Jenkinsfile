@@ -1,5 +1,5 @@
 pipeline {
-     agent any 
+     agent none 
       
 	 tools { 
         maven 'apache-maven-3.6.3' 
@@ -11,9 +11,9 @@ pipeline {
                        label "jenkins"}
             }  steps {
 			
-			git url: 'https://github.com/saipot/war-application.git'
+			   git url: 'https://github.com/saipot/war-application.git'
 			
-                withMaven {
+             
 				
                 sh "mvn clean verify"
            
@@ -22,12 +22,12 @@ pipeline {
                 sh 'echo "build ran"'
                 archiveArtifacts artifacts: 'web-thymeleaf-war/target/mkyong.war', fingerprint:true
                 junit '**/target/surefire-reports/*.xml'
-            }
+            
         }
 	}	
         
         stage ('Sonar Analysis') {
-            agent {node{
+            agent { node{
                    label "jenkins"}
             }
             steps {
