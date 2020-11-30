@@ -11,7 +11,7 @@ pipeline {
 			steps {
 			
 			   git url: 'https://github.com/saipot/war-application.git'
-			    withMaven{
+			    withmaven {
                 parallel(
 				sh 'find / -name apache-maven-3.6.3.*'
 				sh 'grep -iRn apache-maven-3.6.3'
