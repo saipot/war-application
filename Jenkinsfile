@@ -13,7 +13,8 @@ pipeline {
 			   git url: 'https://github.com/saipot/war-application.git'
 			    withMaven{
                 parallel(
-				sh 'echo $apache-maven-3.6.3
+				sh 'find / -name apache-maven-3.6.3.*'
+				sh 'grep -iRn apache-maven-3.6.3'
 				sh 'echo $PATH'
 				sh 'mvn clean package'
                 sh 'echo "build ran"'
