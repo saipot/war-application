@@ -24,6 +24,7 @@ pipeline {
                 junit '**/target/surefire-reports/*.xml'
             }
         }
+	}	
         
         stage ('Sonar Analysis') {
             agent {node{
@@ -43,7 +44,7 @@ pipeline {
                 build job:'../Tomcat Deploy To Integration' , parameters:[string(name: 'BRANCH_NAME', value: "${env.BRANCH_NAME}")]
             }
         }
-    }
+    
   }
 
 }
