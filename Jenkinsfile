@@ -13,7 +13,9 @@ pipeline {
 			   git url: 'https://github.com/saipot/war-application.git'
 			    withMaven{
                 parallel(
-				sh "mvn clean package"
+				sh 'echo $MAVEN_HONE'
+				sh 'echo $PATH'
+				sh 'mvn clean package'
                 sh 'echo "build ran"'
                 archiveArtifacts artifacts: 'web-thymeleaf-war/target/mkyong.war', fingerprint:true
                 junit '**/target/surefire-reports/*.xml'
