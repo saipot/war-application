@@ -1,5 +1,5 @@
 pipeline {
-     agent none 
+     agent any 
       
 	 tools { 
         maven 'M3' 
@@ -7,7 +7,9 @@ pipeline {
     }
     stages {
         stage('Build') {
-            
+            agent { node{
+                   label "jenkins"}
+            }
 			steps {
 			    sh 'mvn -B -DskipTests clean package'
                 sh 'echo "build ran"'
