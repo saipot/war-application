@@ -14,7 +14,7 @@ pipeline {
 			
                 parallel(
 				
-                sh "mvn clean verify"
+               
            
 			    sh 'mvn -B -DskipTests clean package'
                 
