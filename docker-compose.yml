@@ -23,7 +23,7 @@ services:
   tomcat:
     image: 'tutum/tomcat:6.0'
     ports:
-      - 10000:10000
+      - 10000:8080
     environment:
       - TOMCAT_PASS=admin
     networks:
