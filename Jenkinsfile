@@ -7,13 +7,12 @@ pipeline {
     }
     stages {
         stage('Build') {
-            agent { node{
-                       label "jenkins"}
-            }  steps {
+            
+			steps {
 			
 			   git url: 'https://github.com/saipot/war-application.git'
 			
-             
+                parallel(
 				
                 sh "mvn clean verify"
            
@@ -22,7 +21,7 @@ pipeline {
                 sh 'echo "build ran"'
                 archiveArtifacts artifacts: 'web-thymeleaf-war/target/mkyong.war', fingerprint:true
                 junit '**/target/surefire-reports/*.xml'
-            
+            )
         }
 	}	
         
