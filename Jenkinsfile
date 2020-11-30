@@ -9,11 +9,7 @@ pipeline {
         stage('Build') {
             
 			steps {
-			
-			   git url: 'https://github.com/saipot/war-application.git'
-			  
-				
-				sh 'mvn -B -DskipTests clean package'
+			    sh 'mvn -B -DskipTests clean package'
                 sh 'echo "build ran"'
                 archiveArtifacts artifacts: 'web-thymeleaf-war/target/mkyong.war', fingerprint:true
                 junit '**/target/surefire-reports/*.xml'
