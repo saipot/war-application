@@ -9,8 +9,14 @@ pipeline {
         stage('Build and Test') {
             agent { node{
                        label "jenkins"}
-            } 
-            steps {
+            }  steps {
+			
+			git url: 'https://github.com/saipot/war-application.git'
+			
+                withMaven {
+				
+                sh "mvn clean verify"
+           
 			    sh 'mvn -B -DskipTests clean package'
                 
                 sh 'echo "build ran"'
