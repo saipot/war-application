@@ -24,6 +24,8 @@ services:
     image: 'tutum/tomcat:6.0'
     ports:
       - 10000:8080
+    volumes:
+      - ./target/mkyong.war:/tomcat/webapps/mkyong/mkyong.war
     environment:
       - TOMCAT_PASS=admin
     networks:
