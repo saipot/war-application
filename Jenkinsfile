@@ -15,8 +15,7 @@ pipeline {
 			    sh 'mvn -B -DskipTests clean package'
                 sh 'echo "build ran"'
                 archiveArtifacts artifacts: 'target/mkyong.war', fingerprint:true
-                junit '**/target/surefire-reports/*.xml'
-				
+            
         }
 	}	
         
