@@ -14,21 +14,13 @@ pipeline {
 			steps {
 			    sh 'mvn -B -DskipTests clean package'
                 sh 'echo "build ran"'
-                archiveArtifacts artifacts: 'web-thymeleaf-war/target/mkyong.war', fingerprint:true
+                archiveArtifacts artifacts: 'target/mkyong.war', fingerprint:true
                 junit '**/target/surefire-reports/*.xml'
 				
         }
 	}	
         
-        stage ('Sonar Analysis') {
-            agent { node{
-                   label "jenkins"}
-            }
-            steps {
-                sh 'echo "running sonar analysis"'
-                sh "mvn sonar:sonar -Dsonar.host.url=http://192.168.99.100:9000 -Dsonar.branch=${env.BRANCH_NAME}"
-            }   
-        }
+        
         
         stage ('Deploy to Integration') {
             agent {node{
