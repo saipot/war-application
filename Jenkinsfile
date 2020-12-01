@@ -3,7 +3,7 @@ pipeline {
                    label "jenkins"} 
       }
 	 tools { 
-        maven 'M3' 
+        maven 'Maven home' 
         
     }
     stages {
